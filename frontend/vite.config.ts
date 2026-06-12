@@ -13,8 +13,12 @@ function git(cmd: string): string {
 }
 
 export default defineConfig({
-  base: process.env.BASE_PATH || '/',
+  base: './',
   plugins: [react(), tailwindcss()],
+  build: {
+    outDir: '../docs',
+    emptyOutDir: false,
+  },
   define: {
     __GIT_HASH__: JSON.stringify(git('rev-parse --short HEAD')),
     __GIT_TAG__: JSON.stringify(git('describe --tags --abbrev=0')),
